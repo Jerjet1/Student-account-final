@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Homepage{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>
+            Student Account System
+        </h1>
+    </header>
+    <div>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+    <div class="navbar">
+        <a href="{% url 'studentadd'%}">Add Student</a>
+        <a href="{% url 'searchStudent'%}">Search</a>
+    </div>
+    <div class="container-form">
+        {% block content %}
+            <h3>Add Student</h3>
+            <form method="POST">
+                {%csrf_token%}
+                <label for="fname">First Name:</label>
+                <input type="text" id="fname" name="fname" required><br>
+                <label for="lname">Last Name:</label>
+                <input type="text" id="lname" name="lname" required><br>
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required><br>
+                <label for="birthday">Date of Birth:</label>
+                <input type="date" id="birthday" name="birthday" required><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" pattern="[a-zA-Z0-9._%+-]+@example\.com" required><br>
+                <label for="contactNo">Contact Number</label>
+                <input type="number" id="contactNo" name="contactNo" maxlength="11"><br>
+                <label for="year">Year Level</label>
+                <select name="year" id="year" required>
+                    <option disabled selected value="">Year level</option>
+                    <option value="1">1st year</option>
+                    <option value="2">2nd year</option>
+                    <option value="3">3rd year</option>
+                    <option value="4">4th year</option>
+                </select><br>
+                <label for="course">Choose a course:</label>
+                <select name="course" id="course" required>
+                    <option disabled selected value="">Select a Course</option>
+                    <option value="BSIT">Bachelor of Science in Information Technology</option>
+                    <option value="BIT-CT">Bachelor of Industrial Technology - Computer Technology</option>
+                    <option value="BSIS">The Bachelor of Science in Information Systems</option>
+                </select>
+                <br>
+                <button type="submit">Submit</button>
+            </form>
+        {% endblock %}
+    </div>
+</body>
+</html>
