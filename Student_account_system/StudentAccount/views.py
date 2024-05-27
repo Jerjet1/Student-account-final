@@ -23,11 +23,8 @@ def studentadd(request):
             name_exist = len(StudentData.objects.filter(last_name = students.last_name, first_name = students.first_name))
             email_exist = len(StudentData.objects.filter(email = students.email))
 
-            if name_exist:
-                messages.error(request, 'account already exist')
-            
-            if email_exist:
-                messages.error(request, 'email already exist')
+            if name_exist > 0 and email_exist > 0:
+                messages.error(request, 'name or email already exist')
             else:
                 messages.success(request, 'Account successfully added')
                 students.save()
