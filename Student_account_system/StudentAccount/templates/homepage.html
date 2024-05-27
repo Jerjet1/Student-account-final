@@ -13,6 +13,12 @@
             Student Account System
         </h1>
     </header>
+    <div class="navbar">
+        <ul>
+            <li><a href="{% url 'studentadd'%}">Add Student</a></li>
+            <li><a href="{% url 'searchStudent'%}">Search</a></li>
+        </ul>
+    </div>
     <div>
         {% if messages %}
             <ul class="messages">
@@ -21,10 +27,6 @@
                 {% endfor %}
             </ul>
         {% endif %}
-    </div>
-    <div class="navbar">
-        <a href="{% url 'studentadd'%}">Add Student</a>
-        <a href="{% url 'searchStudent'%}">Search</a>
     </div>
     <div class="container-form">
         {% block content %}
@@ -57,7 +59,7 @@
                     <option value="BSIT">Bachelor of Science in Information Technology</option>
                     <option value="BIT-CT">Bachelor of Industrial Technology - Computer Technology</option>
                     <option value="BSIS">The Bachelor of Science in Information Systems</option>
-                </select>
+                </select>                
                 <br>
                 <button type="submit">Submit</button>
             </form>
